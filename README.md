@@ -22,7 +22,7 @@ const callOptions = {
     inviteEnabled: false,
     calendarEnabled: false,
     welcomePageEnabled: false,
-    pipEnabled: false,
+    jwt: "jwtTokenHere",
     audioOnly: false,
     audioMuted: false,
     videoMuted: false,

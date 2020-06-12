@@ -7,7 +7,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -39,6 +38,7 @@ public class JitsiPlugin extends CordovaPlugin implements JitsiMeetActivityInter
     private class JitsiSettings implements Serializable {
         String url;
         String subject;
+        String jwt;
         Boolean chatEnabled = false;
         Boolean inviteEnabled = false;
         Boolean calendarEnabled = false;
@@ -53,6 +53,9 @@ public class JitsiPlugin extends CordovaPlugin implements JitsiMeetActivityInter
             JitsiMeetConferenceOptions.Builder builder = new JitsiMeetConferenceOptions.Builder()
                     .setRoom(url);
 
+            if (jwt != null) {
+                builder.setToken(jwt);
+            }
             if (welcomePageEnabled != null) {
                 builder.setWelcomePageEnabled(welcomePageEnabled);
             }
