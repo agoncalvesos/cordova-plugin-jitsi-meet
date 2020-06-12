@@ -15,17 +15,28 @@ Example of how to select them here: https://github.com/findmate/cordova-plugin-j
 
 # Usage
 ```
-const roomId = 'your-custom-room-id';
-
-jitsiplugin.loadURL('https://meet.jit.si/' + roomId, roomId, false, function (data) {
-    if (data === "CONFERENCE_WILL_LEAVE") {
-        jitsiplugin.destroy(function (data) {
-            // call finished
-        }, function (err) {
-            console.log(err);
-        });
+const callOptions = {
+    url: "https:meet.jitsi.si/roomId",
+    subject: "Room Subject",
+    chatEnabled: false,
+    inviteEnabled: false,
+    calendarEnabled: false,
+    welcomePageEnabled: false,
+    pipEnabled: false,
+    audioOnly: false,
+    audioMuted: false,
+    videoMuted: false,
+    userInfo: {
+        displayName: "John Doe",
+        email: "john.doe@email.com",
+        avatarURL: "https:sample.avatar.com/randomImage.png"
     }
+}
+
+jitsiplugin.loadURL(callOptions, function () {
+    console.log("Call initialized with successs");
 }, function (err) {
+    console.log("Error initializing call");
     console.log(err);
 });
 ```
