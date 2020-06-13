@@ -1,48 +1,50 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<plugin id='cordova-plugin-jitsi-meet' version='1.0.2' xmlns='http://apache.org/cordova/ns/plugins/1.0' xmlns:android='http://schemas.android.com/apk/res/android'>
-	<name>JitsiPlugin</name>
-	<js-module name='JitsiPlugin' src='www/JitsiPlugin.js'>
-		<clobbers target='jitsiplugin' />
-	</js-module>
+<plugin id='cordova-plugin-jitsi-meet' version='1.0.2' xmlns='http://apache.org/cordova/ns/plugins/1.0'
+        xmlns:android='http://schemas.android.com/apk/res/android'>
+    <name>JitsiPlugin</name>
+    <js-module name='JitsiPlugin' src='www/JitsiPlugin.js'>
+        <clobbers target='jitsiplugin'/>
+    </js-module>
 
 
-	<platform name='android'>
+    <platform name='android'>
         <dependency id="cordova-androidx-build"
-                    url="https://github.com/cmfsotelo/cordova-androidx-build.git#outsystems-compat" />
-        
-		<config-file parent='/*' target='res/xml/config.xml'>
-			<feature name='JitsiPlugin'>
-				<param name='android-package' value='com.cordova.plugin.jitsi.JitsiPlugin' />
-			</feature>
-		</config-file>
-		<config-file parent='/*' target='AndroidManifest.xml'>
-			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-			<uses-permission android:name="android.permission.BLUETOOTH" />
-			<uses-permission android:name="android.permission.CAMERA" />
-			<uses-permission android:name="android.permission.INTERNET" />
-			<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
-			<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-			<uses-permission android:name="android.permission.WAKE_LOCK" />
-			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-		</config-file>
-        <hook type="before_plugin_install" src="hooks/changeGradleProperties.js" />
-        <source-file src='src/android/JitsiPlugin.java' target-dir='src/com/cordova/plugin/jitsi/' />
-		<framework src='src/android/jitsiplugin.gradle' custom='true' type='gradleReference' />
-	</platform>
+                    url="https://github.com/cmfsotelo/cordova-androidx-build.git#outsystems-compat"/>
 
-	<!-- ios -->
-	<platform name="ios">
-		<config-file target="config.xml" parent="/*">
-			<feature name="JitsiPlugin">
-					<param name="ios-package" value="JitsiPlugin"/>
-			</feature>
-		</config-file>
-		<header-file src="src/ios/JitsiMeetView.h" />
-		<header-file src="src/ios/JitsiMeetViewDelegate.h" />
-		<header-file src="src/ios/JitsiPlugin.h" />
-		<source-file src="src/ios/JitsiPlugin.mm" />
-		<framework src="./framework/JitsiMeet.framework" custom="true"/>
-		<framework src="./framework/WebRTC.framework" custom="true"/>
-	</platform>
+        <config-file parent='/*' target='res/xml/config.xml'>
+            <feature name='JitsiPlugin'>
+                <param name='android-package' value='com.cordova.plugin.jitsi.JitsiPlugin'/>
+            </feature>
+        </config-file>
+        <config-file parent='/*' target='AndroidManifest.xml'>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.CAMERA"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+            <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+            <uses-permission android:name="android.permission.WAKE_LOCK"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+        </config-file>
+        <hook type="before_plugin_install" src="hooks/android-change-gradle-properties.js"/>
+        <source-file src='src/android/JitsiPlugin.java' target-dir='src/com/cordova/plugin/jitsi/'/>
+        <framework src='src/android/jitsiplugin.gradle' custom='true' type='gradleReference'/>
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="JitsiPlugin">
+                <param name="ios-package" value="JitsiPlugin"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/JitsiMeetView.h"/>
+        <header-file src="src/ios/JitsiMeetViewDelegate.h"/>
+        <header-file src="src/ios/JitsiPlugin.h"/>
+        <source-file src="src/ios/JitsiPlugin.mm"/>
+        <hook type="after_plugin_install" src="hooks/ios-embed-frameworks.js"/>
+        <framework src="./framework/JitsiMeet.framework" custom="true" embed="true"/>
+        <framework src="./framework/WebRTC.framework" custom="true" embed="true"/>
+    </platform>
 </plugin>
