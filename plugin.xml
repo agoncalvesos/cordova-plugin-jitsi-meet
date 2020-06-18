@@ -43,8 +43,23 @@
         <header-file src="src/ios/JitsiMeetViewDelegate.h"/>
         <header-file src="src/ios/JitsiPlugin.h"/>
         <source-file src="src/ios/JitsiPlugin.mm"/>
-        <hook type="after_plugin_install" src="hooks/ios-embed-frameworks.js"/>
-        <framework src="./framework/JitsiMeet.framework" custom="true" embed="true"/>
-        <framework src="./framework/WebRTC.framework" custom="true" embed="true"/>
+        
+        <preference name="CAMERA_USAGE_DESCRIPTION" default="This app requires camera access for reasons" />
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>$CAMERA_USAGE_DESCRIPTION</string>
+        </config-file>
+
+        <preference name="MICROPHONE_USAGE_DESCRIPTION" default="This app requires microphone access for reasons" />
+        <config-file target="*-Info.plist" parent="NSMicrophoneUsageDescription">
+            <string>$MICROPHONE_USAGE_DESCRIPTION</string>
+        </config-file>
+<!--
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>audio</string>
+            </array>
+        </config-file>
+        -->
+        <framework src="JitsiMeetSDK" type="podspec" spec="~> 2.5.0"/>
     </platform>
 </plugin>
