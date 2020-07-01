@@ -8,9 +8,6 @@
 
 
     <platform name='android'>
-        <dependency id="cordova-androidx-build"
-                    url="https://github.com/cmfsotelo/cordova-androidx-build.git#outsystems-compat"/>
-
         <config-file parent='/*' target='res/xml/config.xml'>
             <feature name='JitsiPlugin'>
                 <param name='android-package' value='com.cordova.plugin.jitsi.JitsiPlugin'/>
