@@ -40,5 +40,21 @@
 		<source-file src="src/ios/JitsiPlugin.mm" />
 		<framework src="./framework/JitsiMeet.framework" custom="true"/>
 		<framework src="./framework/WebRTC.framework" custom="true"/>
+
+		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+			<string>$CAMERA_USAGE_DESCRIPTION</string>
+		</config-file>
+
+		<config-file target="*-Info.plist" parent="MICROPHONE_USAGE_DESCRIPTION">
+			<string>$MICROPHONE_USAGE_DESCRIPTION</string>
+		</config-file>
+
+		<config-file target="*-Info.plist" parent="CALENDAR_USAGE_DESCRIPTION">
+			<string>$CALENDAR_USAGE_DESCRIPTION</string>
+		</config-file>
+
+		<config-file target="*-Info.plist" parent="CONTACTS_USAGE_DESCRIPTION">
+			<string>$CONTACTS_USAGE_DESCRIPTION</string>
+		</config-file>
 	</platform>
 </plugin>
